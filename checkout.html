@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Checkout | Westmoor Saddlery</title>
+  <link rel="canonical" href="https://westmoorsad.netlify.app/checkout.html">
+  <meta name="description" content="Secure checkout for Westmoor Saddlery. Free shipping on orders over $150.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .header { position: relative; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,0.06); padding: 14px 0; }
+    .header .logo, .header .nav-links a, .header .nav-icons a, .header .mobile-menu-btn { color: var(--text); }
+    .checkout-grid { display: grid; grid-template-columns: 1fr 360px; gap: 32px; padding: 32px 0 60px; }
+    @media (max-width: 900px) { .checkout-grid { grid-template-columns: 1fr; } }
+    .co-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .co-card h2 { font-size: 1.15rem; margin: 0 0 16px; }
+    .co-field { margin-bottom: 14px; }
+    .co-field label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #333; }
+    .co-field input, .co-field select, .co-field textarea {
+      width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box;
+    }
+    .co-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 600px) { .co-row { grid-template-columns: 1fr; } }
+    .summary-line { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.95rem; }
+    .summary-line.total { font-weight: 700; font-size: 1.15rem; border-bottom: none; padding-top: 12px; }
+    .pay-btn {
+      display: block; width: 100%; text-align: center; padding: 14px 18px; border-radius: 8px;
+      font-weight: 600; font-size: 1rem; margin-top: 10px; border: none; cursor: pointer; text-decoration: none; box-sizing: border-box;
+    }
+    .pay-stripe { background: #635bff; color: #fff; }
+    .pay-paypal { background: #ffc439; color: #111; }
+    .pay-order { background: var(--gold, #b8860b); color: #fff; }
+    .pay-btn:disabled, .pay-btn.disabled { opacity: 0.45; cursor: not-allowed; }
+    .hint { font-size: 0.8rem; color: #666; margin-top: 8px; line-height: 1.4; }
+    .stock-ok { color: #1a7f37; font-size: 0.85rem; }
+    .empty-msg { text-align: center; padding: 60px 20px; }
+    .cart-mini { font-size: 0.9rem; margin-bottom: 12px; }
+    .cart-mini div { display: flex; justify-content: space-between; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f5f5f5; }
+  </style>
+
+  <!-- Replace G-XXXXXXXXXX with your GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to content</a>
+
+  
+  <div class="legit-bar" role="note">
+    <div class="container legit-inner">
+      <span>Westmoor Saddlery · Abilene, TX 79602</span>
+      <span class="dot">|</span>
+      <a href="tel:+12536607454">+1 (253) 660-7454</a>
+      <span class="dot">|</span>
+      <a href="https://wa.me/12536607454" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <span class="dot">|</span>
+      <span>Mon–Fri 9am–5pm CT</span>
+    </div>
+  </div>
+<main id="mainContent">
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="images/logo-horse.jpg" alt="Westmoor Saddlery"></div>
+        <div class="logo-text"><strong>WESTMOOR</strong><small>Saddlery · Quality · Ride</small></div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="shop.html">Continue Shopping</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="cart.html" aria-label="Cart">🛒 <span class="cart-count">0</span></a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" id="checkoutRoot">
+    <div class="empty-msg" id="emptyCheckout" style="display:none">
+      <h1>Your cart is empty</h1>
+      <p><a href="shop.html" class="btn btn-gold">Browse products</a></p>
+    </div>
+
+    <form id="checkoutForm" name="order" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/order-success.html">
+      <input type="hidden" name="form-name" value="order">
+      <input type="hidden" name="bot-field">
+      <input type="hidden" name="order_items" id="orderItemsField">
+      <input type="hidden" name="order_subtotal" id="orderSubtotalField">
+      <input type="hidden" name="order_shipping" id="orderShippingField">
+      <input type="hidden" name="order_total" id="orderTotalField">
+
+      <div class="checkout-grid">
+        <div>
+          <div class="co-card">
+            <h2>Contact</h2>
+            <div class="co-field">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com">
+            </div>
+            <div class="co-field">
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(555) 555-5555">
+            </div>
+          </div>
+
+          <div class="co-card">
+            <h2>Shipping address</h2>
+            <div class="co-row">
+              <div class="co-field">
+                <label for="firstName">First name *</label>
+                <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+              </div>
+              <div class="co-field">
+                <label for="lastName">Last name *</label>
+                <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+              </div>
+            </div>
+            <div class="co-field">
+              <label for="address1">Address *</label>
+              <input type="text" id="address1" name="address1" required autocomplete="address-line1">
+            </div>
+            <div class="co-field">
+              <label for="address2">Apartment, suite, etc.</label>
+              <input type="text" id="address2" name="address2" autocomplete="address-line2">
+            </div>
+            <div class="co-row">
+              <div class="co-field">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" required autocomplete="address-level2">
+              </div>
+              <div class="co-field">
+                <label for="state">State *</label>
+                <input type="text" id="state" name="state" required autocomplete="address-level1" placeholder="IN">
+              </div>
+            </div>
+            <div class="co-row">
+              <div class="co-field">
+                <label for="zip">ZIP *</label>
+                <input type="text" id="zip" name="zip" required autocomplete="postal-code">
+              </div>
+              <div class="co-field">
+                <label for="country">Country *</label>
+                <select id="country" name="country" required>
+                  <option value="United States" selected>United States</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="co-field">
+              <label for="notes">Order notes</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Seat size, fit questions, delivery notes…"></textarea>
+            </div>
+          </div>
+
+          <div class="co-card">
+            <h2>Payment</h2>
+            <p class="hint" style="margin-top:0">Submit your order first so we receive your details. Then pay securely with card or PayPal. We ship after payment is confirmed.</p>
+            <button type="submit" class="pay-btn pay-order" id="submitOrderBtn">1. Place order (save details)</button>
+            <a class="pay-btn pay-stripe disabled" id="stripeBtn" href="#" target="_blank" rel="noopener">2. Pay with card (Stripe)</a>
+            <a class="pay-btn pay-paypal disabled" id="paypalBtn" href="#" target="_blank" rel="noopener">2. Pay with PayPal</a>
+            <p class="hint" id="payHint">After you create Stripe / PayPal accounts, add your payment links in <code>js/config.js</code> and redeploy. Until then, place the order and we will email you a payment link.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="co-card" style="position:sticky;top:20px">
+            <h2>Order summary</h2>
+            <div class="cart-mini" id="summaryItems"></div>
+            <div class="summary-line"><span>Subtotal</span><span id="sumSubtotal">$0</span></div>
+            <div class="summary-line"><span>Shipping</span><span id="sumShipping">—</span></div>
+            <div class="summary-line total"><span>Total</span><span id="sumTotal">$0</span></div>
+            <p class="hint">Free shipping on orders over $<span id="freeMinLabel">150</span> (contiguous US).</p>
+            <p class="stock-ok">✓ Items reserved when order is placed (subject to availability)</p>
+            <p class="hint"><a href="shipping-returns.html">Shipping &amp; returns</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  
+
+  
+  <script src="js/config.js"></script>
+  <script src="js/script.js" defer></script>
+  <script>
+    function money(n) {
+      return '$' + Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function shippingFor(subtotal) {
+      const cfg = window.WESTMOOR_CONFIG || {};
+      const min = cfg.freeShippingMin != null ? cfg.freeShippingMin : 150;
+      const flat = cfg.flatShippingUnderMin != null ? cfg.flatShippingUnderMin : 15;
+      if (subtotal >= min) return 0;
+      return flat;
+    }
+    function renderCheckout() {
+      const items = Cart.get();
+      const empty = document.getElementById('emptyCheckout');
+      const form = document.getElementById('checkoutForm');
+      if (!items.length) {
+        empty.style.display = 'block';
+        form.style.display = 'none';
+        return;
+      }
+      empty.style.display = 'none';
+      form.style.display = 'block';
+
+      const sub = Cart.total();
+      const ship = shippingFor(sub);
+      const total = sub + ship;
+      const cfg = window.WESTMOOR_CONFIG || {};
+
+      document.getElementById('summaryItems').innerHTML = items.map(i =>
+        '<div><span>' + i.qty + ' × ' + i.name + '</span><span>' + money(i.price * i.qty) + '</span></div>'
+      ).join('');
+      document.getElementById('sumSubtotal').textContent = money(sub);
+      document.getElementById('sumShipping').textContent = ship === 0 ? 'FREE' : money(ship);
+      document.getElementById('sumTotal').textContent = money(total);
+      document.getElementById('freeMinLabel').textContent = cfg.freeShippingMin || 150;
+
+      document.getElementById('orderItemsField').value = items.map(i => i.qty + 'x ' + i.name + ' @ ' + i.price).join(' | ');
+      document.getElementById('orderSubtotalField').value = sub.toFixed(2);
+      document.getElementById('orderShippingField').value = ship.toFixed(2);
+      document.getElementById('orderTotalField').value = total.toFixed(2);
+
+      const stripeBtn = document.getElementById('stripeBtn');
+      const paypalBtn = document.getElementById('paypalBtn');
+      if (cfg.stripePaymentLink) {
+        stripeBtn.href = cfg.stripePaymentLink;
+        stripeBtn.classList.remove('disabled');
+      } else {
+        stripeBtn.href = '#';
+        stripeBtn.classList.add('disabled');
+        stripeBtn.onclick = function(e) { e.preventDefault(); alert('Stripe is not connected yet. Place your order — we will email a secure payment link. To connect: create a Stripe Payment Link and paste it in js/config.js (stripePaymentLink).'); };
+      }
+      if (cfg.paypalLink) {
+        paypalBtn.href = cfg.paypalLink;
+        paypalBtn.classList.remove('disabled');
+      } else {
+        paypalBtn.href = '#';
+        paypalBtn.classList.add('disabled');
+        paypalBtn.onclick = function(e) { e.preventDefault(); alert('PayPal is not connected yet. Place your order — we will email payment instructions. To connect: add your PayPal.Me or business link in js/config.js (paypalLink).'); };
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderCheckout();
+      const form = document.getElementById('checkoutForm');
+      if (form) {
+        form.addEventListener('submit', function() {
+          // Let Netlify Forms capture; also stash for success page
+          try {
+            sessionStorage.setItem('westmoor_last_order_total', document.getElementById('orderTotalField').value);
+            sessionStorage.setItem('westmoor_last_order_items', document.getElementById('orderItemsField').value);
+          } catch (e) {}
+          // Clear cart after short delay so form can post
+          setTimeout(function() { Cart.clear(); }, 500);
+        });
+      }
+    });
+  </script>
+
+  </main>
+  <section class="newsletter">
+    <div class="container">
+      <h2>Join Our Mailing List</h2>
+      <p>Exclusive offers, new arrivals and saddle tips</p>
+      <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="newsletter">
+        <p style="display:none"><label>Don’t fill this out: <input name="bot-field"></label></p>
+        <input type="email" name="email" placeholder="Enter your email address" required>
+        <button type="submit" class="btn btn-gold">Sign Up</button>
+      </form>
+    </div>
+  </section>
+
+  
+  
+  <div class="container">
+    <div class="how-order">
+      <h2>How ordering works (simple &amp; safe)</h2>
+      <ol>
+        <li><strong>Browse</strong> and message or call us about the item you want.</li>
+        <li>We <strong>confirm it is still available</strong> and answer fit or condition questions.</li>
+        <li>You pay only after we confirm — we never ask for gift cards or wire-only “urgent” deals.</li>
+        <li>We ship with tracking and support you on fit, shipping, and returns.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="trust-bar" role="region" aria-label="Our guarantees">
+    <div class="container trust-inner">
+      <span><strong>Free shipping</strong> over $150</span>
+      <span><strong>Expert</strong> saddle fit guidance</span>
+      <span><strong>Secure</strong> checkout when you order</span>
+      <span><strong>WhatsApp</strong> +1 (253) 660-7454</span>
+    </div>
+  </div>
+
+  <div class="policy-callout container" style="max-width:700px;margin:20px auto">
+    <h3>Order notification</h3>
+    <p>Submit your order details and we will confirm by phone or WhatsApp at <strong>+1 (253) 660-7454</strong>. You will not be charged until we confirm availability.</p>
+  </div>
+<footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Info</h4>
+          <a href="about.html">Our Story</a>
+          <a href="shop.html">Shop</a>
+          <a href="shipping-returns.html">Shipping &amp; Returns</a>
+          <a href="financing.html">Financing</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="saddle-fitting.html">Saddle Fit Guide</a>
+          <a href="horse-rug-guide.html">Horse Rug Guide</a>
+          <a href="ask-expert.html">Ask an Expert</a>
+          <a href="trade-in.html">Trade-In</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p style="color:#ccc;font-size:14px;line-height:1.6;margin:0">Westmoor Saddlery<br>1202 South Treadaway Boulevard<br>Abilene, TX 79602</p>
+          <p class="wa-phone-row">
+            <a href="https://wa.me/12536607454" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+              <svg class="wa-icon" width="28" height="28" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span>WhatsApp</span>
+            </a>
+            <a href="tel:+12536607454" class="phone-link">+1 (253) 660-7454</a>
+          </p>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=61595169849605" target="_blank" rel="noopener noreferrer" class="social-facebook" aria-label="Westmoor Saddlery on Facebook">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+      <div class="payment-logos">
+        <p class="payment-logos-label">We accept</p>
+        <div class="payment-logos-row">
+          <img src="images/payments/visa.jpg" alt="Visa" width="56" height="36" loading="lazy">
+          <img src="images/payments/mastercard.jpg" alt="Mastercard" width="56" height="36" loading="lazy">
+          <img src="images/payments/paypal.jpg" alt="PayPal" width="56" height="36" loading="lazy">
+          <img src="images/payments/apple-pay.jpg" alt="Apple Pay" width="56" height="36" loading="lazy">
+          <img src="images/payments/google-pay.jpg" alt="Google Pay" width="56" height="36" loading="lazy">
+          <img src="images/payments/opay.jpg" alt="OPay" width="56" height="36" loading="lazy">
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Westmoor Saddlery. All rights reserved.</div>
+    </div>
+  </footer>
+
+
+  <a class="float-wa" href="https://wa.me/12536607454?text=Hi%20I%27m%20interested%20in%20a%20product%20on%20your%20website" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>Chat with us</span>
+  </a>
+
+</body>
+</html>

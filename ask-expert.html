@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask a Saddle Expert | Free Advice from Westmoor Saddlery</title>
+  <meta name="description" content="Get free advice from our saddle experts. Ask about fit, model choice, trade-ins and more.">
+  <meta name="keywords" content="saddle expert, saddle advice, ask about saddle fit">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://westmoorsad.netlify.app/ask-expert.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Westmoor Saddlery">
+  <meta property="og:title" content="Ask a Saddle Expert | Free Advice from Westmoor Saddlery">
+  <meta property="og:description" content="Get free advice from our saddle experts. Ask about fit, model choice, trade-ins and more.">
+  <meta property="og:url" content="https://westmoorsad.netlify.app/ask-expert.html">
+  <meta property="og:image" content="https://westmoorsad.netlify.app/images/home-barn-saddle.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ask a Saddle Expert | Free Advice from Westmoor Saddlery">
+  <meta name="twitter:description" content="Get free advice from our saddle experts. Ask about fit, model choice, trade-ins and more.">
+  <meta name="twitter:image" content="https://westmoorsad.netlify.app/images/home-barn-saddle.jpg">
+  <meta name="geo.region" content="US-TX">
+  <meta name="geo.placename" content="Abilene, Texas">
+  <link rel="icon" href="images/logo-horse.jpg" type="image/jpeg">
+
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .header { position: relative; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,.06); padding: 14px 0; }
+    .header .logo, .header .nav-links a, .header .nav-icons a { color: var(--text); }
+    .header .logo-text small { color: var(--text-muted); }
+    .header .nav-links a.active, .header .nav-links a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    .header .mobile-menu-btn { color: var(--text); }
+
+    .expert-hero { background: #5c1a1a; color: #fff; padding: 40px 20px; text-align: center; }
+    .expert-hero h1 { margin: 0 0 10px; font-size: clamp(1.5rem, 4vw, 2rem); }
+    .expert-hero p { max-width: 560px; margin: 0 auto; opacity: .95; line-height: 1.55; }
+
+    .form-wrap { max-width: 720px; margin: 0 auto; padding: 32px 20px 60px; }
+    .form-intro { background: #faf8f5; border-left: 4px solid var(--gold); padding: 18px 20px; margin-bottom: 28px; border-radius: 0 8px 8px 0; line-height: 1.55; }
+    .form-section { background: #fff; border: 1px solid #e8e6e1; border-radius: 10px; padding: 22px 24px; margin-bottom: 20px; }
+    .form-section h2 { margin: 0 0 16px; font-size: 1.15rem; color: #5c1a1a; padding-bottom: 10px; border-bottom: 2px solid #f0ebe3; }
+    .form-row { margin-bottom: 14px; }
+    .form-row label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 5px; color: #333; }
+    .form-row input[type=text],
+    .form-row input[type=email],
+    .form-row input[type=tel],
+    .form-row input[type=number],
+    .form-row select,
+    .form-row textarea {
+      width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px;
+      font-size: 15px; font-family: inherit; box-sizing: border-box;
+    }
+    .form-row textarea { min-height: 80px; resize: vertical; }
+    .form-row .hint { font-size: 12px; color: #777; margin-top: 4px; }
+    .form-row.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 560px) { .form-row.two-col { grid-template-columns: 1fr; } }
+
+    .photo-note { background: #f7f5f0; border-radius: 8px; padding: 14px 16px; font-size: 14px; line-height: 1.5; margin-bottom: 14px; }
+    .photo-note strong { color: #5c1a1a; }
+
+    .submit-btn {
+      display: block; width: 100%; padding: 16px; background: #c45c12; color: #fff;
+      border: none; border-radius: 8px; font-size: 16px; font-weight: 700;
+      letter-spacing: .03em; cursor: pointer; text-transform: uppercase;
+    }
+    .submit-btn:hover { background: #a84d0f; }
+    .submit-note { text-align: center; font-size: 13px; color: #666; margin-top: 12px; }
+
+    .faq-block { max-width: 720px; margin: 0 auto 50px; padding: 0 20px; }
+    .faq-block h2 { font-size: 1.25rem; margin-bottom: 16px; }
+    .faq-item { border-bottom: 1px solid #e8e6e1; padding: 14px 0; }
+    .faq-item summary { font-weight: 600; cursor: pointer; color: #5c1a1a; }
+    .faq-item p { margin: 10px 0 0; font-size: 14px; line-height: 1.55; color: #444; }
+
+    .success-msg { display: none; background: #e8f5e9; border: 1px solid #a5d6a7; color: #1b5e20;
+      padding: 16px 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+  </style>
+
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "Ask a Saddle Expert | Free Advice from Westmoor Saddlery",
+      "description": "Get free advice from our saddle experts. Ask about fit, model choice, trade-ins and more.",
+      "url": "https://westmoorsad.netlify.app/ask-expert.html",
+      "isPartOf": { "@id": "https://westmoorsad.netlify.app/#website" },
+      "publisher": { "@id": "https://westmoorsad.netlify.app/#organization" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://westmoorsad.netlify.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Ask an Expert", "item": "https://westmoorsad.netlify.app/ask-expert.html" }
+      ]
+    }
+  ]
+}
+</script>
+
+
+  <!-- Replace G-XXXXXXXXXX with your GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to content</a>
+
+  
+  <div class="legit-bar" role="note">
+    <div class="container legit-inner">
+      <span>Westmoor Saddlery · Abilene, TX 79602</span>
+      <span class="dot">|</span>
+      <a href="tel:+12536607454">+1 (253) 660-7454</a>
+      <span class="dot">|</span>
+      <a href="https://wa.me/12536607454" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <span class="dot">|</span>
+      <span>Mon–Fri 9am–5pm CT</span>
+    </div>
+  </div>
+<main id="mainContent">
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="images/logo-horse.jpg" alt="Westmoor Saddlery"></div>
+        <div class="logo-text"><strong>WESTMOOR</strong><small>Saddlery · Quality · Ride</small></div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li class="mobile-only"><a class="menu-cat" href="shop.html?cat=English">English Saddles</a></li>
+        <li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Western">Western Saddles</a></li>
+        <li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Used">Used Saddles</a></li>
+        <li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Kids">Kid's Saddles</a></li>
+        <li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Pads">Tack &amp; Pads</a></li>
+        <li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Boots">Boots</a></li>
+<li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Men%20Boots">Men Boots</a></li>
+<li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Women%20Boots">Women Boots</a></li>
+<li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Kids%20Boots">Kids / Youth Boots</a></li>
+        <li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Horse%20Rugs">Horse Rugs</a></li>
+        <li class="mobile-only"><a class="menu-cat" href="shop.html?cat=Accessories">Accessories</a></li>
+
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="saddle-fitting.html">Fit Guide</a></li>
+        <li><a href="horse-rug-guide.html">Rug Guide</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="cart.html">🛒 <span class="cart-count">0</span></a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="expert-hero">
+    <h1>Ask a Saddle Expert</h1>
+    <p>Choosing a saddle online should not mean guessing. Tell us about you, your horse, and how you ride — our team will recommend suitable new or used saddles from our inventory.</p>
+  </div>
+
+  <div class="form-wrap">
+    <div class="form-intro">
+      <strong>Personal help from Westmoor Saddlery</strong><br>
+      Complete as much as you can. If you don’t know an answer, leave it blank or choose “Not sure.” Clear photos of your horse improve the recommendation a lot.
+    </div>
+
+    <div id="successMsg" class="success-msg">
+      Your request is ready. Your email app should open with the details filled in — just hit Send. If it doesn’t open, email us directly at <a href="mailto:support@westmoorsad.netlify.app">support@westmoorsad.netlify.app</a>.
+    </div>
+
+    <form id="expertForm" onsubmit="return sendRecommendation(event)">
+
+      <!-- 1. Contact -->
+      <div class="form-section">
+        <h2>1. Contact Information</h2>
+        <div class="form-row">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+            <div class="hint">Include if you’d like us to call you</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="contactMethod">Preferred Contact Method</label>
+          <select id="contactMethod" name="contactMethod">
+            <option value="">Choose</option>
+            <option>Email</option>
+            <option>Phone</option>
+            <option>Either</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 2. Rider -->
+      <div class="form-section">
+        <h2>2. Rider and Riding Information</h2>
+        <div class="form-row two-col">
+          <div>
+            <label for="height">Rider’s Height</label>
+            <input type="text" id="height" name="height" placeholder="Example: 5 ft 8 in">
+          </div>
+          <div>
+            <label for="weight">Rider’s Weight (lbs)</label>
+            <input type="number" id="weight" name="weight" placeholder="Pounds">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="ridingType">Primary Type of Riding</label>
+          <select id="ridingType" name="ridingType">
+            <option value="">Choose</option>
+            <option>Trail / Pleasure</option>
+            <option>Ranch / Work</option>
+            <option>Arena / Reining / Cutting</option>
+            <option>Endurance</option>
+            <option>English / Dressage / Hunt</option>
+            <option>Other / Mixed</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="rideLength">Typical Ride Length and Frequency</label>
+          <input type="text" id="rideLength" name="rideLength" placeholder="Example: 2-hour trail rides, twice a week">
+        </div>
+        <div class="form-row">
+          <label for="mattersMost">What matters most to you?</label>
+          <textarea id="mattersMost" name="mattersMost" placeholder="Comfort, lightweight, close-contact feel, security, ranch work, looks..."></textarea>
+        </div>
+      </div>
+
+      <!-- 3. Preferences & Budget -->
+      <div class="form-section">
+        <h2>3. Saddle Preferences and Budget</h2>
+        <div class="form-row two-col">
+          <div>
+            <label for="newUsed">New, Used or Either?</label>
+            <select id="newUsed" name="newUsed">
+              <option value="">Choose</option>
+              <option>New only</option>
+              <option>Used only</option>
+              <option>Either</option>
+            </select>
+          </div>
+          <div>
+            <label for="budget">Budget Range</label>
+            <select id="budget" name="budget">
+              <option value="">Choose</option>
+              <option>Under $500</option>
+              <option>$500 – $1,000</option>
+              <option>$1,000 – $1,500</option>
+              <option>$1,500 – $2,500</option>
+              <option>$2,500 – $4,000</option>
+              <option>$4,000+</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label for="material">Saddle Material</label>
+            <select id="material" name="material">
+              <option value="">Choose</option>
+              <option>Leather</option>
+              <option>Synthetic</option>
+              <option>Either</option>
+            </select>
+          </div>
+          <div>
+            <label for="color">Preferred Color</label>
+            <select id="color" name="color">
+              <option value="">Choose</option>
+              <option>Brown / Oil</option>
+              <option>Black</option>
+              <option>Light / Natural</option>
+              <option>No preference</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="currentSaddle">Current Saddle and Seat Size</label>
+          <input type="text" id="currentSaddle" name="currentSaddle" placeholder="Brand, model and seat size if known">
+        </div>
+        <div class="form-row">
+          <label for="likesDislikes">What do you like or dislike about your current saddle?</label>
+          <textarea id="likesDislikes" name="likesDislikes" placeholder="Rider comfort, balance, security, horse fit..."></textarea>
+        </div>
+        <div class="form-row">
+          <label for="tradeIn">Do you have a saddle to trade?</label>
+          <select id="tradeIn" name="tradeIn">
+            <option value="">Choose</option>
+            <option>Yes</option>
+            <option>Possibly</option>
+            <option>No</option>
+          </select>
+          <div class="hint"><a href="trade-in.html">Learn about our Trade-In program</a></div>
+        </div>
+      </div>
+
+      <!-- 4. Horse -->
+      <div class="form-section">
+        <h2>4. Horse Information</h2>
+        <div class="form-row two-col">
+          <div>
+            <label for="horseName">Horse’s Name</label>
+            <input type="text" id="horseName" name="horseName">
+          </div>
+          <div>
+            <label for="breed">Horse Breed or Type</label>
+            <input type="text" id="breed" name="breed" placeholder="Example: Quarter Horse, Haflinger, gaited">
+          </div>
+        </div>
+        <div class="form-row two-col">
+          <div>
+            <label for="horseHeight">Horse Height</label>
+            <input type="text" id="horseHeight" name="horseHeight" placeholder="Example: 15.1 hands">
+          </div>
+          <div>
+            <label for="horseWeight">Approximate Horse Weight (lbs)</label>
+            <input type="number" id="horseWeight" name="horseWeight" placeholder="Pounds">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="backLength">Back Length</label>
+          <select id="backLength" name="backLength">
+            <option value="">Choose / Not sure</option>
+            <option>Short</option>
+            <option>Average</option>
+            <option>Long</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="shoulderWidth">Shoulder and Ribcage Width</label>
+          <select id="shoulderWidth" name="shoulderWidth">
+            <option value="">Choose / Not sure</option>
+            <option>Narrow</option>
+            <option>Average</option>
+            <option>Wide</option>
+            <option>Extra wide</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="withers">Withers</label>
+          <select id="withers" name="withers">
+            <option value="">Choose / Not sure</option>
+            <option>High / pronounced</option>
+            <option>Average</option>
+            <option>Low / mutton-withered</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="fitProblems">Known Fit Problems or Physical Characteristics</label>
+          <textarea id="fitProblems" name="fitProblems" placeholder="White hairs, dry spots, soreness, bridging, rocking, asymmetry..."></textarea>
+        </div>
+      </div>
+
+      <!-- 5. Photos note -->
+      <div class="form-section">
+        <h2>5. Horse Photos</h2>
+        <div class="photo-note">
+          <strong>For the most useful recommendation:</strong> Stand the horse square on level ground without a saddle or pad. Take clear, well-lit photos.<br><br>
+          <strong>Photo 1</strong> — Full side view (entire horse standing square)<br>
+          <strong>Photo 2</strong> — Front and shoulder (chest, shoulders, withers from a slight angle)<br>
+          <strong>Photo 3</strong> — Back and withers from above (shape of the back behind the withers)<br><br>
+          Attach photos when you send the email, or email them separately to
+          <a href="mailto:support@westmoorsad.netlify.app">support@westmoorsad.netlify.app</a> with your name in the subject.
+        </div>
+      </div>
+
+      <!-- 6. Comments -->
+      <div class="form-section">
+        <h2>6. Anything Else We Should Know?</h2>
+        <div class="form-row">
+          <label for="comments">Additional Comments</label>
+          <textarea id="comments" name="comments" placeholder="Links to saddles you are considering, previous fit issues, timeline..."></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Send My Saddle Expert Request</button>
+      <p class="submit-note">Opens your email with the details filled in. Attach horse photos before sending.<br>
+      Or email us directly: <a href="mailto:support@westmoorsad.netlify.app">support@westmoorsad.netlify.app</a> · <a href="tel:+12536607454">+1 (253) 660-7454</a></p>
+    </form>
+  </div>
+
+  <div class="faq-block">
+    <h2>Saddle Recommendation Questions</h2>
+    <details class="faq-item">
+      <summary>Will Westmoor recommend both new and used saddles?</summary>
+      <p>Yes. Tell us whether you prefer new, used, or either. Recommendations are based on your needs, budget, and what we have in stock.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do I need to answer every question?</summary>
+      <p>No. Complete as much as you can. Rider measurements, riding type, budget, horse information, and clear photos are especially helpful.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Why do you need photos of my horse?</summary>
+      <p>Photos help us see general back length, shoulder width, wither shape, and other characteristics that written descriptions may not capture.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Does a recommendation guarantee saddle fit?</summary>
+      <p>No. The recommendation narrows the choices using the information you supply. Final fit must be evaluated on the individual horse with the intended rider and pad.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can I trade my current saddle toward a recommended saddle?</summary>
+      <p>Yes. Select “Yes” or “Possibly” in the form. An approved trade value can be applied toward a qualifying new or used saddle. See our <a href="trade-in.html">Trade-In page</a>.</p>
+    </details>
+  </div>
+
+  
+
+  <script src="js/script.js"></script>
+  <script>
+  function sendRecommendation(e) {
+    e.preventDefault();
+    const g = id => (document.getElementById(id).value || '').trim();
+    const lines = [
+      'SADDLE EXPERT REQUEST — Westmoor Saddlery',
+      '========================================',
+      '',
+      '1. CONTACT',
+      'Name: ' + g('name'),
+      'Email: ' + g('email'),
+      'Phone: ' + g('phone'),
+      'Preferred contact: ' + g('contactMethod'),
+      '',
+      '2. RIDER',
+      'Height: ' + g('height'),
+      'Weight: ' + g('weight') + (g('weight') ? ' lbs' : ''),
+      'Riding type: ' + g('ridingType'),
+      'Ride length/frequency: ' + g('rideLength'),
+      'What matters most: ' + g('mattersMost'),
+      '',
+      '3. PREFERENCES & BUDGET',
+      'New/Used: ' + g('newUsed'),
+      'Budget: ' + g('budget'),
+      'Material: ' + g('material'),
+      'Color: ' + g('color'),
+      'Current saddle: ' + g('currentSaddle'),
+      'Likes/dislikes: ' + g('likesDislikes'),
+      'Trade-in: ' + g('tradeIn'),
+      '',
+      '4. HORSE',
+      'Name: ' + g('horseName'),
+      'Breed/type: ' + g('breed'),
+      'Height: ' + g('horseHeight'),
+      'Weight: ' + g('horseWeight') + (g('horseWeight') ? ' lbs' : ''),
+      'Back length: ' + g('backLength'),
+      'Shoulder/ribcage: ' + g('shoulderWidth'),
+      'Withers: ' + g('withers'),
+      'Fit problems: ' + g('fitProblems'),
+      '',
+      '5. PHOTOS',
+      '(Please attach: full side view, front/shoulder, back/withers from above)',
+      '',
+      '6. COMMENTS',
+      g('comments'),
+      '',
+      '— Sent from westmoorsad.netlify.app/ask-expert.html'
+    ];
+    const body = encodeURIComponent(lines.join('\n'));
+    const subject = encodeURIComponent('Saddle Expert Request — ' + g('name'));
+    window.location.href = 'mailto:support@westmoorsad.netlify.app?subject=' + subject + '&body=' + body;
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth' });
+    return false;
+  }
+  </script>
+
+  </main>
+  <section class="newsletter">
+    <div class="container">
+      <h2>Join Our Mailing List</h2>
+      <p>Exclusive offers, new arrivals and saddle tips</p>
+      <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="newsletter">
+        <p style="display:none"><label>Don’t fill this out: <input name="bot-field"></label></p>
+        <input type="email" name="email" placeholder="Enter your email address" required>
+        <button type="submit" class="btn btn-gold">Sign Up</button>
+      </form>
+    </div>
+  </section>
+
+  
+  <div class="trust-bar" role="region" aria-label="Our guarantees">
+    <div class="container trust-inner">
+      <span><strong>Free shipping</strong> over $150</span>
+      <span><strong>Expert</strong> saddle fit guidance</span>
+      <span><strong>Secure</strong> checkout when you order</span>
+      <span><strong>WhatsApp</strong> +1 (253) 660-7454</span>
+    </div>
+  </div>
+<footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Info</h4>
+          <a href="about.html">Our Story</a>
+          <a href="shop.html">Shop</a>
+          <a href="shipping-returns.html">Shipping &amp; Returns</a>
+          <a href="financing.html">Financing</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="saddle-fitting.html">Saddle Fit Guide</a>
+          <a href="horse-rug-guide.html">Horse Rug Guide</a>
+          <a href="ask-expert.html">Ask an Expert</a>
+          <a href="trade-in.html">Trade-In</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p style="color:#ccc;font-size:14px;line-height:1.6;margin:0">Westmoor Saddlery<br>1202 South Treadaway Boulevard<br>Abilene, TX 79602</p>
+          <p class="wa-phone-row">
+            <a href="https://wa.me/12536607454" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+              <svg class="wa-icon" width="28" height="28" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span>WhatsApp</span>
+            </a>
+            <a href="tel:+12536607454" class="phone-link">+1 (253) 660-7454</a>
+          </p>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=61595169849605" target="_blank" rel="noopener noreferrer" class="social-facebook" aria-label="Westmoor Saddlery on Facebook">
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+      <div class="payment-logos">
+        <p class="payment-logos-label">We accept</p>
+        <div class="payment-logos-row">
+          <img src="images/payments/visa.jpg" alt="Visa" width="56" height="36" loading="lazy">
+          <img src="images/payments/mastercard.jpg" alt="Mastercard" width="56" height="36" loading="lazy">
+          <img src="images/payments/paypal.jpg" alt="PayPal" width="56" height="36" loading="lazy">
+          <img src="images/payments/apple-pay.jpg" alt="Apple Pay" width="56" height="36" loading="lazy">
+          <img src="images/payments/google-pay.jpg" alt="Google Pay" width="56" height="36" loading="lazy">
+          <img src="images/payments/opay.jpg" alt="OPay" width="56" height="36" loading="lazy">
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Westmoor Saddlery. All rights reserved.</div>
+    </div>
+  </footer>
+
+
+  <a class="float-wa" href="https://wa.me/12536607454?text=Hi%20I%27m%20interested%20in%20a%20product%20on%20your%20website" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>Chat with us</span>
+  </a>
+
+</body>
+</html>
